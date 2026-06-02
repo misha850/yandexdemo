@@ -1,8 +1,15 @@
 {
   "mcpServers": {
-    "bitrix24": {
+    "bitrix24-docs": {
       "type": "http",
       "url": "https://mcp-dev.bitrix24.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${BITRIX24_TOKEN}"
+      }
+    },
+    "bitrix24-portal": {
+      "type": "http",
+      "url": "https://v-import.bitrix24.ru/mcp/",
       "headers": {
         "Authorization": "Bearer ${BITRIX24_TOKEN}"
       }

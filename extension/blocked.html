@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Заблокировано — МойЩит</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 520px;
+      padding: 48px 32px;
+      animation: fadeIn .4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .shield {
+      font-size: 96px;
+      margin-bottom: 24px;
+      display: block;
+      filter: drop-shadow(0 0 32px rgba(59,130,246,.5));
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #3b82f6;
+      background: rgba(59,130,246,.1);
+      border: 1px solid rgba(59,130,246,.3);
+      border-radius: 100px;
+      padding: 6px 16px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .reason-badge {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #ef4444;
+      background: rgba(239,68,68,.1);
+      border: 1px solid rgba(239,68,68,.3);
+      border-radius: 8px;
+      padding: 6px 14px;
+      margin-bottom: 24px;
+    }
+
+    p.desc {
+      font-size: 17px;
+      color: #94a3b8;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .quote {
+      font-size: 15px;
+      color: #64748b;
+      font-style: italic;
+      margin-bottom: 40px;
+      padding: 16px 24px;
+      border-left: 3px solid #3b82f6;
+      text-align: left;
+      border-radius: 0 8px 8px 0;
+      background: rgba(59,130,246,.05);
+    }
+
+    .btn {
+      display: inline-block;
+      background: #3b82f6;
+      color: #fff;
+      border: none;
+      padding: 14px 36px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s, transform .1s;
+    }
+    .btn:hover { background: #2563eb; transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 13px;
+      color: #334155;
+    }
+
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: 32px 0;
+      padding: 20px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 16px;
+    }
+
+    .stat { text-align: center; }
+    .stat-num { font-size: 28px; font-weight: 800; color: #3b82f6; }
+    .stat-lbl { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <span class="shield" id="emoji">🛡️</span>
+    <div class="badge">МойЩит</div>
+    <h1 id="title">Сайт заблокирован</h1>
+    <div class="reason-badge" id="reason">Нарушение правил</div>
+
+    <p class="desc" id="desc">
+      Вы сами установили это ограничение для себя.<br>
+      Держитесь — вы сильнее этого!
+    </p>
+
+    <div class="stats-bar" id="stats" style="display:none">
+      <div class="stat">
+        <div class="stat-num" id="stat-days">0</div>
+        <div class="stat-lbl">дней защиты</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="stat-blocked">0</div>
+        <div class="stat-lbl">попыток сегодня</div>
+      </div>
+    </div>
+
+    <div class="quote" id="quote">
+      "Самодисциплина — это то, что отличает тех, кто мечтает, от тех, кто достигает."
+    </div>
+
+    <button class="btn" onclick="history.length > 1 ? history.back() : window.close()">
+      ← Вернуться назад
+    </button>
+
+    <div class="footer">
+      Изменить настройки можно в расширении МойЩит (нажмите на иконку в панели браузера)
+    </div>
+  </div>
+
+  <script>
+    const type = location.hash.replace('#', '') || location.search.replace('?type=', '');
+
+    const configs = {
+      adult: {
+        emoji: '🔞',
+        title: 'Контент для взрослых заблокирован',
+        reason: 'Сайт для взрослых',
+        desc: 'Вы сами установили это ограничение. Это ваш выбор — беречь своё внимание и энергию.',
+        quote: '"Истинная свобода — это умение управлять своими желаниями, а не следовать им." — Эпиктет'
+      },
+      gambling: {
+        emoji: '🚫',
+        title: 'Азартные игры заблокированы',
+        reason: 'Азартный сайт',
+        desc: 'Деньги, которые вы не проиграли — это деньги, которые вы накопили. Ваша цель сильнее этого порыва.',
+        quote: '"Каждый раз, когда ты не поддаёшься импульсу — ты становишься сильнее." — Конфуций (адапт.)'
+      },
+      incognito: {
+        emoji: '🕵️',
+        title: 'Режим инкогнито заблокирован',
+        reason: 'Инкогнито запрещён',
+        desc: 'Режим инкогнито отключён. Вы сами установили это правило для большей осознанности.',
+        quote: '"То, что мы делаем в темноте, формирует нас на свету." — аноним'
+      }
+    };
+
+    const cfg = configs[type] || configs.adult;
+    document.getElementById('emoji').textContent = cfg.emoji;
+    document.getElementById('title').textContent = cfg.title;
+    document.getElementById('reason').textContent = cfg.reason;
+    document.getElementById('desc').innerHTML = cfg.desc;
+    document.getElementById('quote').textContent = cfg.quote;
+
+    // Показываем статистику из storage
+    if (typeof chrome !== 'undefined' && chrome.storage) {
+      chrome.storage.local.get(['installDate', 'blockedToday'], (data) => {
+        if (data.installDate) {
+          const days = Math.floor((Date.now() - new Date(data.installDate).getTime()) / 86400000);
+          document.getElementById('stat-days').textContent = days;
+          document.getElementById('stat-blocked').textContent = (data.blockedToday || 0) + 1;
+          document.getElementById('stats').style.display = 'flex';
+          // Инкремент счётчика попыток сегодня
+          chrome.storage.local.set({ blockedToday: (data.blockedToday || 0) + 1 });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

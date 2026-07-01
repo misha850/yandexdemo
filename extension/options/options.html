@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>МойЩит — Настройки</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="page">
+
+    <!-- Пароль — шлюз -->
+    <div id="gate" class="gate">
+      <div class="gate-inner">
+        <span class="gate-icon">🔐</span>
+        <h1>МойЩит — Настройки</h1>
+
+        <!-- Первая установка пароля -->
+        <div id="setup-form" class="auth-form" style="display:none">
+          <p class="auth-hint">Установите PIN-код (минимум 6 цифр или символов).<br>
+            <strong>Запомните его — восстановления нет!</strong></p>
+          <input type="password" id="pin-new" placeholder="Новый PIN" maxlength="64" class="pin-input">
+          <input type="password" id="pin-confirm" placeholder="Повторите PIN" maxlength="64" class="pin-input">
+          <div class="auth-error" id="setup-error"></div>
+          <button class="btn-primary" id="btn-setup">Установить и открыть настройки</button>
+        </div>
+
+        <!-- Ввод пароля -->
+        <div id="login-form" class="auth-form">
+          <p class="auth-hint">Введите PIN-код для доступа к настройкам</p>
+          <input type="password" id="pin-login" placeholder="PIN-код" maxlength="64" class="pin-input"
+                 autofocus autocomplete="current-password">
+          <div class="auth-error" id="login-error"></div>
+          <button class="btn-primary" id="btn-login">Открыть настройки</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Настройки (показываются после авторизации) -->
+    <div id="settings" style="display:none">
+      <header class="header">
+        <div class="header-left">
+          <span class="logo">🛡️</span>
+          <span class="app-title">МойЩит — Настройки</span>
+        </div>
+        <button class="btn-lock" id="btn-lock" title="Заблокировать">🔒 Заблокировать</button>
+      </header>
+
+      <div class="content">
+
+        <!-- Блокировки -->
+        <section class="card">
+          <h2 class="card-title">🚫 Блокировки</h2>
+
+          <div class="toggle-row">
+            <div>
+              <div class="toggle-label">Контент для взрослых</div>
+              <div class="toggle-desc">Блокировать порнографические сайты</div>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="block-adult" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="toggle-row">
+            <div>
+              <div class="toggle-label">Азартные игры</div>
+              <div class="toggle-desc">Блокировать казино, букмекеры, ставки</div>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="block-gambling" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="toggle-row">
+            <div>
+              <div class="toggle-label">Режим инкогнито</div>
+              <div class="toggle-desc">Закрывать вкладки в инкогнито автоматически</div>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="block-incognito" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Напоминания -->
+        <section class="card">
+          <h2 class="card-title">⏰ Напоминания</h2>
+
+          <div class="field-row">
+            <label class="field-label" for="water-interval">💧 Напоминать пить воду каждые</label>
+            <div class="field-input-wrap">
+              <input type="number" id="water-interval" class="field-input" min="5" max="120" value="20">
+              <span class="field-unit">мин</span>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <label class="field-label" for="break-interval">🧘 Напоминать об отдыхе каждые</label>
+            <div class="field-input-wrap">
+              <input type="number" id="break-interval" class="field-input" min="15" max="240" value="50">
+              <span class="field-unit">мин</span>
+            </div>
+          </div>
+
+          <button class="btn-secondary" id="btn-save-alarms">Сохранить интервалы</button>
+        </section>
+
+        <!-- Накопления -->
+        <section class="card">
+          <h2 class="card-title">💰 Цель накоплений</h2>
+
+          <div class="field-row">
+            <label class="field-label" for="savings-goal">Целевая сумма</label>
+            <div class="field-input-wrap">
+              <input type="number" id="savings-goal" class="field-input" min="0" placeholder="0">
+              <span class="field-unit">₽</span>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <label class="field-label" for="savings-total">Накоплено сейчас</label>
+            <div class="field-input-wrap">
+              <input type="number" id="savings-total" class="field-input" min="0" placeholder="0">
+              <span class="field-unit">₽</span>
+            </div>
+          </div>
+
+          <button class="btn-secondary" id="btn-save-savings">Сохранить накопления</button>
+        </section>
+
+        <!-- Смена PIN -->
+        <section class="card">
+          <h2 class="card-title">🔑 Сменить PIN-код</h2>
+          <div class="pin-change-form">
+            <input type="password" id="pin-old" placeholder="Текущий PIN" class="pin-input-sm">
+            <input type="password" id="pin-new2" placeholder="Новый PIN" class="pin-input-sm">
+            <input type="password" id="pin-conf2" placeholder="Повторите новый PIN" class="pin-input-sm">
+            <div class="auth-error" id="pin-change-error"></div>
+            <button class="btn-secondary" id="btn-change-pin">Сменить PIN</button>
+          </div>
+        </section>
+
+        <!-- Сброс статистики -->
+        <section class="card card-danger">
+          <h2 class="card-title">⚠️ Сброс данных</h2>
+          <p class="danger-desc">Это сбросит всю статистику привычек и накопления. Настройки блокировки сохранятся.</p>
+          <button class="btn-danger" id="btn-reset-stats">Сбросить статистику</button>
+        </section>
+
+        <div class="save-success" id="save-success">✅ Сохранено!</div>
+      </div>
+    </div>
+
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>

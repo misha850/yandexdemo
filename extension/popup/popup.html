@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>МойЩит</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Шапка -->
+    <header class="header">
+      <div class="header-left">
+        <span class="logo">🛡️</span>
+        <div>
+          <div class="app-name">МойЩит</div>
+          <div class="date" id="today-date">1 июля 2026</div>
+        </div>
+      </div>
+      <a href="../options/options.html" class="settings-btn" target="_blank" title="Настройки">⚙️</a>
+    </header>
+
+    <!-- Стрики -->
+    <section class="streaks-row" id="streaks-row">
+      <div class="streak-item" id="streak-reading">
+        <span class="streak-icon">📚</span>
+        <span class="streak-num">0</span>
+        <span class="streak-lbl">дн</span>
+      </div>
+      <div class="streak-item" id="streak-meditation">
+        <span class="streak-icon">🧘</span>
+        <span class="streak-num">0</span>
+        <span class="streak-lbl">дн</span>
+      </div>
+      <div class="streak-item" id="streak-pushups">
+        <span class="streak-icon">💪</span>
+        <span class="streak-num">0</span>
+        <span class="streak-lbl">дн</span>
+      </div>
+      <div class="streak-item" id="streak-abs">
+        <span class="streak-icon">🏋️</span>
+        <span class="streak-num">0</span>
+        <span class="streak-lbl">дн</span>
+      </div>
+    </section>
+
+    <!-- Вода -->
+    <section class="section water-section">
+      <div class="section-title">💧 Вода сегодня</div>
+      <div class="water-glasses" id="water-glasses">
+        <!-- генерируется JS -->
+      </div>
+      <div class="water-meta">
+        <span id="water-count">0</span>/8 стаканов
+        <button class="water-add-btn" id="water-add">+1 стакан</button>
+      </div>
+    </section>
+
+    <!-- Привычки -->
+    <section class="section habits-section">
+      <div class="section-title">✅ Привычки</div>
+
+      <div class="habit-row" id="h-reading">
+        <label class="habit-label">
+          <input type="checkbox" class="habit-check" data-habit="reading">
+          <span class="checkmark"></span>
+          <span class="habit-text">📚 Чтение</span>
+        </label>
+        <div class="habit-input-wrap">
+          <input type="number" class="habit-num" data-habit="reading" data-field="minutes"
+                 placeholder="мин" min="1" max="480">
+          <span class="habit-unit">мин</span>
+        </div>
+      </div>
+
+      <div class="habit-row" id="h-meditation">
+        <label class="habit-label">
+          <input type="checkbox" class="habit-check" data-habit="meditation">
+          <span class="checkmark"></span>
+          <span class="habit-text">🧘 Медитация</span>
+        </label>
+        <div class="habit-input-wrap">
+          <input type="number" class="habit-num" data-habit="meditation" data-field="minutes"
+                 placeholder="мин" min="1" max="120">
+          <span class="habit-unit">мин</span>
+        </div>
+      </div>
+
+      <div class="habit-row" id="h-pushups">
+        <label class="habit-label">
+          <input type="checkbox" class="habit-check" data-habit="pushups">
+          <span class="checkmark"></span>
+          <span class="habit-text">💪 Отжимания</span>
+        </label>
+        <div class="habit-input-wrap">
+          <input type="number" class="habit-num" data-habit="pushups" data-field="count"
+                 placeholder="раз" min="1" max="1000">
+          <span class="habit-unit">раз</span>
+        </div>
+      </div>
+
+      <div class="habit-row" id="h-abs">
+        <label class="habit-label">
+          <input type="checkbox" class="habit-check" data-habit="abs">
+          <span class="checkmark"></span>
+          <span class="habit-text">🏋️ Пресс</span>
+        </label>
+        <div class="habit-input-wrap">
+          <input type="number" class="habit-num" data-habit="abs" data-field="sets"
+                 placeholder="подх" min="1" max="50">
+          <span class="habit-unit">подх</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Накопления -->
+    <section class="section savings-section">
+      <div class="section-title">💰 Накопления</div>
+      <div class="savings-progress-wrap">
+        <div class="savings-bar">
+          <div class="savings-fill" id="savings-fill" style="width:0%"></div>
+        </div>
+        <div class="savings-nums">
+          <span id="savings-current">0 ₽</span>
+          <span id="savings-goal">из 0 ₽</span>
+        </div>
+      </div>
+      <div class="savings-add-row">
+        <input type="number" id="savings-amount" placeholder="Сумма" min="1" class="savings-input">
+        <button class="savings-btn" id="savings-add">+ Добавить</button>
+      </div>
+    </section>
+
+    <!-- Защита -->
+    <section class="section protection-section">
+      <div class="section-title">🛡️ Защита активна</div>
+      <div class="protection-pills">
+        <span class="pill pill-green" id="pill-adult">🔞 Взрослый контент</span>
+        <span class="pill pill-green" id="pill-gambling">🎰 Азартные игры</span>
+        <span class="pill pill-green" id="pill-incognito">🕵️ Инкогнито</span>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "_comment": "Политика для принудительной установки расширения МойЩит через Windows GPO",
+  "_comment2": "Замените <EXTENSION_ID> на реальный ID вашего расширения после загрузки в браузер",
+
+  "ExtensionInstallForcelist": [
+    "<EXTENSION_ID>;https://clients2.google.com/service/update2/crx"
+  ],
+
+  "ExtensionInstallBlocklist": [],
+
+  "IncognitoModeAvailability": 2
+}
